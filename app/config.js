@@ -2,14 +2,17 @@ var config = module.exports
 var PRODUCTION = process.env.NODE_ENV === 'production'
 
 config.express = {
-  port: process.env.EXPRESS_PORT || 8080,
-  ip: '127.0.0.1'
+  port: process.env.OPENSHIFT_NODEJS_PORT || process.env.EXPRESS_PORT || 8080,
+  ip: process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 }
 
 config.mongodb = {
   port: process.env.MONGODB_PORT || 27017,
   host: process.env.MONGODB_HOST || 'localhost',
   name: 'asset_tracking'
+}
+if(process.env.OPENSHIFT_MONGODB_DB_URL){
+  mongodb = process.env.OPENSHIFT_MONGODB_DB_URL + db_name;
 }
 if (PRODUCTION) {
   // for example
