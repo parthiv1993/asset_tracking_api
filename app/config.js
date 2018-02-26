@@ -6,13 +6,14 @@ config.express = {
   ip: process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1'
 }
 
-config.mongodb = {
-  port: process.env.MONGODB_PORT || 27017,
-  host: process.env.MONGODB_HOST || 'localhost',
-  name: 'asset_tracking'
-}
+port= process.env.MONGODB_PORT || 27017;
+host= process.env.MONGODB_HOST || 'localhost';
+name= 'asset_tracking';
+
+config.mongodb = 'mongodb://'+host +':'+ port+'/'+name;
+
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
-  mongodb = process.env.OPENSHIFT_MONGODB_DB_URL + db_name;
+  config.mongodb = process.env.OPENSHIFT_MONGODB_DB_URL + db_name;
 }
 if (PRODUCTION) {
   // for example
