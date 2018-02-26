@@ -13,7 +13,7 @@ name= 'asset_tracking';
 config.mongodb = 'mongodb://'+host +':'+ port+'/'+name;
 
 console.log('process.env.OPENSHIFT_MONGODB_DB_URL',process.env.OPENSHIFT_MONGODB_DB_URL);
-console.log('process.env',process.env.toString());
+console.log('process.env',process.env.MONGO_URL);
 
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
   config.mongodb = process.env.OPENSHIFT_MONGODB_DB_URL;
