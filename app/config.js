@@ -15,8 +15,8 @@ config.mongodb = 'mongodb://'+host +':'+ port+'/'+name;
 console.log('process.env.OPENSHIFT_MONGODB_DB_URL',process.env.OPENSHIFT_MONGODB_DB_URL);
 console.log('process.env',process.env.MONGO_URL);
 
-if(process.env.OPENSHIFT_MONGODB_DB_URL){
-  config.mongodb = process.env.OPENSHIFT_MONGODB_DB_URL;
+if(process.env.MONGO_URL){
+  config.mongodb = process.env.MONGO_URL;
 }
 if (PRODUCTION) {
   // for example
