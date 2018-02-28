@@ -12,8 +12,9 @@ module.exports = (function(){
         });
     }
 
-    function _insertTempratureData(req, res) {
+    function _insertTempratureData(req, res) 
         var tempratureData = req.body;
+        console.log('temperature to insert',tempratureData);
         TempratureModel.insertTempratureData(tempratureData,function(){
             res.json({ok: 'ok'});
         },
