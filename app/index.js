@@ -10,7 +10,9 @@ app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.use('/api', require('./gps/router'));
 app.use('/api', require('./temprature/router'));
+app.use('/api', require('./humidity/router'));
 app.use('/api', require('./tours/router'));
 app.use('/api', require('./trucks/router'));
+app.use('/api', require('./measures/router'));
 
 module.exports = app
