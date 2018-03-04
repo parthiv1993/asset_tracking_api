@@ -13,13 +13,6 @@ var truckSchema = new Schema({
         type: String,
         required: true
     },
-    containers: {
-        type: Array
-    },
-    currentLocation: {
-        type: [Number, Number],
-        index: '2d'
-    },
     lastUpdatedOn: { type: Date, default: Date.now },
 });
 

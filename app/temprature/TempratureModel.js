@@ -23,7 +23,8 @@ var Temprature = mongoose.model('Temprature', tempratureSchema);
 module.exports = (function() {
     return {
         getAllTempratureData: _getAllTempratureData,
-        insertTempratureData: _insertTempratureData
+        insertTempratureData: _insertTempratureData,
+        getTempratureDataForContainer: _getTempratureDataForContainer
     };
 
     function _getAllTempratureData(next) {
@@ -44,6 +45,16 @@ module.exports = (function() {
             }
             next();
         })
+    }
+
+    function _getTempratureDataForContainer(tourId, truckId, containerId, success, failure) {
+        Temprature.find({tourId, truckId, containerId}, (err, temprature)=>{
+            if (err) {
+                failure(err);
+                return;
+            }
+            success(temprature);
+        });
     }
 
 })();

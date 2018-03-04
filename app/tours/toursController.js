@@ -3,7 +3,8 @@ var ToursModel = require('./ToursModel');
 module.exports = (function(){
     return {
         insertToursData: _insertToursData,
-        getAllTours: _getAllTours
+        getAllTours: _getAllTours,
+        getTourById: _getTourById
     };
     
     function _insertToursData(req, res) {
@@ -16,6 +17,15 @@ module.exports = (function(){
     function _getAllTours(req, res) {
         ToursModel.getAllTours(function(result) {
             res.json(result)
+        });
+    }
+
+    function _getTourById(req, res) {
+        const tourId = req.params.tour_id;
+        ToursModel.getTourById(tourId, function(result) {
+            res.json(result)
+        }, function(err) {
+            res.json(err);
         });
     }
 

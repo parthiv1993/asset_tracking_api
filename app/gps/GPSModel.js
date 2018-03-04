@@ -10,7 +10,10 @@ var gpsSchema = new Schema({
         type: String,
         required: true
     },
-    location: Object,
+    location: {
+        type: [Number, Number],
+        index: '2d'
+    },
     lastUpdatedOn: { type: Date, default: Date.now },
 });
 
@@ -19,7 +22,9 @@ var GPS = mongoose.model('GPS', gpsSchema);
 module.exports = (function() {
     return {
         getAllGPSData: _getAllGPSData,
-        insertGPSDataForTour: _insertGPSDataForTour
+        insertGPSDataForTour: _insertGPSDataForTour,
+        getGPSDataByTourId: _getGPSDataByTourId,
+        getLatestGPSDataByTourId: _getLatestGPSDataByTourId
     };
 
     function _getAllGPSData(next) {
@@ -40,6 +45,30 @@ module.exports = (function() {
             }
             next();
         })
+    }
+
+    function _getGPSDataByTourId(tourId, truckId, success, failure) {
+        console.log('tour Id: ', tourId, ' truck Id: ', truckId);
+        GPS.find({tourId, truckId}, (err, data)=>{
+            if(err) {
+                failure(err);
+                return;
+            }
+
+            success(data);
+        });
+    }
+
+    function _getLatestGPSDataByTourId(tourId, truckId, success, failure) {
+        GPS.findOne().sort('-lastUpdatedOn')
+        .exec((err, data) => {
+            if (err) {
+                failure(err);
+                return;
+            }
+
+            success(data);
+        });
     }
 
 })();
