@@ -4,7 +4,8 @@ module.exports = (function(){
     return {
         insertToursData: _insertToursData,
         getAllTours: _getAllTours,
-        getTourById: _getTourById
+        getTourById: _getTourById,
+        deleteAll: _deleteAll
     };
     
     function _insertToursData(req, res) {
@@ -27,6 +28,14 @@ module.exports = (function(){
         }, function(err) {
             res.json(err);
         });
+    }
+
+    function _deleteAll(req, res) {
+        ToursModel.deleteAll(function(result){
+         res.json(result)   
+        }, function(err){
+           res.status.json(err) 
+        })
     }
 
 })();

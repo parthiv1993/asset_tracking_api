@@ -63,7 +63,8 @@ module.exports = (function() {
     return {
         insertToursData: _insertToursData,
         getAllTours: _getAllTours,
-        getTourById: _getTourById
+        getTourById: _getTourById,
+        deleteAll: _deleteAll
     };
 
     function _insertToursData(toursData, next) {
@@ -103,6 +104,17 @@ module.exports = (function() {
             }
 
             success(tour);
+        });
+    }
+
+    function _deleteAll(success, failure) {
+        Tours.remove({}, (err, result)=>{
+            if (err) {
+                failure(err);
+                return
+            }
+
+            success(result);
         });
     }
 
