@@ -15,10 +15,22 @@ var container = new Schema({
     deliveryPointName: {
         type: String
     },
-    tempratureThreshold:{
+    tempratureThresholdMax:{
         type: String
     },
-    humidityThreshold:{
+    tempratureThresholdMin:{
+        type: String
+    },
+    tempratureThresholdAvg:{
+        type: String
+    },
+    humidityThresholdMax:{
+        type: String
+    },
+    humidityThresholdMin: {
+        type: String
+    },
+    humidityThresholdAvg: {
         type: String
     }
 });
